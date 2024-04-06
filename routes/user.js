@@ -10,4 +10,7 @@ router.route("/signup").
     get(userController.renderSignup)
     .post(userController.handleSignup)
 
+router.route("/logout").
+    get(userController.logout)
+
 module.exports = router

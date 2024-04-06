@@ -9,28 +9,30 @@ const renderSignup = (req, res) => {
 }
 
 const handleSignup = async (req, res) => {
-    const { fullName, email, password } = req.body
-
+    const { fullName, email, password } = req.body;
     await User.create({
         fullName,
         email,
         password,
-    })
-
-    return res.redirect("/")
+    });
+    return res.redirect("/");
 }
 
 const handleSignin = async (req, res) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
     try {
-        const token = await User.matchPasswordAndGenerateToken(email, password)
-        console.log("token---->", token)
-        return res.cookie("cookie", token).redirect("/")
+        const token = await User.matchPasswordAndGenerateToken(email, password);
+        return res.cookie("token", token).redirect("/");
     } catch (error) {
-        res.render("signin",
-            { error: "incorrect email or password" })
+        return res.render("signin", {
+            error: "Incorrect Email or Password",
+        });
     }
 }
 
+const logout = async (req, res) => {
+    res.clearCookie("token").redirect("/")
+}
+
 module.exports =
-    { renderSignin, renderSignup, handleSignup, handleSignin }
+    { renderSignin, renderSignup, handleSignup, handleSignin, logout }

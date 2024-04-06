@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "crypto-hash": "^3.0.0",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.0"
+    "mongoose": "^8.3.0",
+    "multer": "^1.4.5-lts.1"
   }
 }
