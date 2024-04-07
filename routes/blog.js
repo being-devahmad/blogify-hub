@@ -19,6 +19,9 @@ router.route("/create-new-blog")
     .get(blogController.renderCreateBlog)
     .post(upload.single("coverImage"), blogController.createBlog)
 
+router.route("/:id")
+    .get(blogController.renderSingleBlog)
+
 
 // router.post("/", upload.single("coverImage"),)
 
