@@ -1,4 +1,5 @@
 const Blog = require("../models/blog");
+const Comment = require("../models/comment");
 
 const renderCreateBlog = (req, res) => {
     return res.render("addBlog", {
@@ -22,11 +23,25 @@ const createBlog = async (req, res) => {
 
 
 const renderSingleBlog = async (req, res) => {
-    const blog = await Blog.findById(req.params.id)
+    const blog = await Blog.findById(req.params.id).populate("createdBy")
+    const comments = await Comment.find({ blogId: req.params.id }).populate("createdBy")
+    // console.log("comments", comments)
+
     return res.render('singleBlog', {
         user: req.user,
-        blog
+        blog,
+        comments
     })
 }
 
-module.exports = { renderCreateBlog, createBlog, renderSingleBlog };
+
+const handleComments = async (req, res) => {
+    await Comment.create({
+        content: req.body.content,
+        blogId: req.params.blogId,
+        createdBy: req.user._id,
+    });
+    return res.redirect(`/blog/${req.params.blogId}`);
+}
+
+module.exports = { renderCreateBlog, createBlog, renderSingleBlog, handleComments };

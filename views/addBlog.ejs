@@ -10,7 +10,11 @@
     <%- include("./partials/nav") %>
 
     <div class="container mt-3">
-      <form action="/blog/create-new-blog" method="post" enctype="multipart/form-data">
+      <form
+        action="/blog/create-new-blog"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <div class="mb-3">
           <label for="coverImage" class="form-label">Cover Image</label>
           <input
@@ -32,11 +36,18 @@
         </div>
         <div class="mb-3">
           <label for="body" class="form-label">Body</label>
-          <textarea class="form-control" id="body" rows="3" name="body"></textarea>
+          <textarea
+            class="form-control"
+            id="body"
+            rows="3"
+            name="body"
+          ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
+
+    
 
     <%- include("./partials/scripts") %>
   </body>

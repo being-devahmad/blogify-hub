@@ -22,7 +22,8 @@ router.route("/create-new-blog")
 router.route("/:id")
     .get(blogController.renderSingleBlog)
 
+router.route('/comment/:blogId')
+    .post(blogController.handleComments)
 
-// router.post("/", upload.single("coverImage"),)
 
 module.exports = router
